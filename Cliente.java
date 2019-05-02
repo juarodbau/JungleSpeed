@@ -1,76 +1,66 @@
-package com.dam.appcliente2;
-
-import android.os.AsyncTask;
-import android.widget.TextView;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Cliente extends AsyncTask<Void, Void, String> {
+public class Servidor {
 
-    String dstAddress;
-    int dstPort;
-    String response = "";
-    TextView textResponse;
+public static Socket connection;
 
-    Cliente(String addr, int port) {
-        dstAddress = addr;
-        dstPort = port;
-        this.textResponse = textResponse;
-    }
+public static void main(String[] args) throws IOException {
 
-    @Override
-    protected String doInBackground(Void... arg0) {
-
-        Socket socket = null;
-
-        try {
-            socket = new Socket(dstAddress, dstPort);
-
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
-                    1024);
-            byte[] buffer = new byte[1024];
-
-            int bytesRead;
-            InputStream inputStream = socket.getInputStream();
-
-            /*
-             * notice: inputStream.read() will block if no data return
-             */
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                byteArrayOutputStream.write(buffer, 0, bytesRead);
-                response += byteArrayOutputStream.toString("UTF-8");
-            }
-
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            response = "UnknownHostException: " + e.toString();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            response = "IOException: " + e.toString();
-        } finally {
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
+    
+	ServerSocket ss;
+    System.out.print("Inicializando servidor... ");
+    
+    try {
+    	
+    	// Variables
+    	
+        System.out.println("\t[OK]");
+        ss = new ServerSocket(54325);
+        int idSesion = 0;
+        boolean auxSesion = true;
+        boolean auxMesa = true;
+        Socket[] ssArraySesion = new Socket[2];
+        
+        // While que espera conexiones - La conexion
+        
+        while (auxSesion) { 
+            Socket socket;
+            socket = ss.accept();
+            ssArraySesion[idSesion]=socket;
+            System.out.println("Nueva conexión entrante: "+socket);
+            idSesion++;
+            if (idSesion == 2) {
+            	auxSesion = false;
+            	for ( int i = 0; i < idSesion; i++) {
+            		System.out.println("Listado de conexiones: "+ssArraySesion[i]);
+            	}
+              }
         }
-        return response;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-        textResponse.setText(response);
-        super.onPostExecute(result);
-    }
-
-
+        
+        // While de la mesa - La partida
+        
+        while (auxMesa) { 
+            	
+        	DataInputStream msg_rx = new DataInputStream(ssArraySesion[0].getInputStream());
+        	if (msg_rx.available()==0) { // Si no hay mensajes por parte del cliente
+        		
+        		while(true) {}
+        		
+        	}else {
+        		
+            	System.out.println(msg_rx.readUTF());
+        		
+        	}
+        
+        }
+            
+        
+    } catch (IOException ex) {
+        Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+    	}
+	}
 }
