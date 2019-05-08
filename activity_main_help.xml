@@ -15,7 +15,7 @@
 
         android:layout_alignParentTop="true"
         android:layout_marginStart="46dp"
-        android:layout_marginTop="141dp"
+        android:layout_marginTop="152dp"
         android:text="La mejor terapia: risas y gritos garantizados. La rapidez y la astucia son la clave. Ve y actúa. Sé el más veloz: muestra tu carta y si hay otra igual sobre la mesa, agarra el Tótem sin dudar, pero cuidado… si te equivocas, ayudas a los demás a ganar. Si tus manos son ágiles y tu mente está siempre despierta, es tu juego."
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="#FFFFFF"
@@ -25,20 +25,42 @@
         app:fontFamily="casual" />
 
     <Button
-        android:id="@+id/atrasButton"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_alignParentStart="true"
+        android:id="@+id/creditosButton"
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/atrasButton"
+        android:layout_alignLeft="@+id/atrasButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="286dp"
-        android:layout_marginLeft="300dp"
+        android:layout_marginStart="-209dp"
+        android:layout_marginLeft="-209dp"
         android:layout_marginTop="300dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/buttonshape"
+        android:text="CREDITOS"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/atrasButton"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="263dp"
+        android:layout_marginLeft="263dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/buttonshape"
         android:text="VOLVER"
         android:textColor="@color/colorAccent"
-        android:textSize="15dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
 
