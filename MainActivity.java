@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent (v.getContext(), MainActivitySala.class);
+                Intent intent = new Intent (v.getContext(), Inicio.class);
 
                 startActivityForResult(intent, 0);
             }
