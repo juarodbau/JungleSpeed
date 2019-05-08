@@ -27,7 +27,13 @@
         </activity>
 
         <activity android:name=".MainActivityHelp" />
-        <activity android:name=".MainActivitySala"></activity>
+        <activity android:name=".MainActivitySala"/>
+        <activity android:name=".MainActivitySala2"/>
+        <activity android:name=".Inicio"/>
+        <activity android:name=".Pruebas"/>
+        <activity android:name=".Creditos">
+
+        </activity>
     </application>
 
 </manifest>
